@@ -1,1 +1,18 @@
-<p>login works!</p>
+<div class="container">
+<form action="">
+    <h1>Registrati</h1>
+    <p>Inserire i propri dati prima di Eseguire il Quiz</p>
+    <hr>
+
+    <label for="nome"><b>Nome</b></label>
+    <input type="text" placeholder="Inserisci NOME" name="nome" id="nome" #nome required>
+
+    <label for="cognome"><b>COGNOME</b></label>
+    <input type="text" placeholder="Inserisci COGNOME" name="cognome" id="cognome" #cognome required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Inserisci EMAIL" name="email" id="email" #email required>
+
+    <button  class="registerbtn" (click)="salvaUtente()">Register</button>
+  </form>
+</div>
