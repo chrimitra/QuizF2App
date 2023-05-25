@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<form [formGroup]="form" (ngSubmit)="submitFile()">
+    <label for="csv">File csv</label>
+    <br>
+    <input type="file" formControlName="csv" (change)="fileChanged($event)">
+    <br>
+    <label *ngIf="form.get('csv')?.touched==true && form.get('csv')?.valid==false" for="csv">Devi selezionare un file</label>
+    <br>
+    <button type="submit" id="submit" [disabled]="!form.valid" class="btn btn-primary" #submit>Login</button>
+</form>
+<br>
+<p>{{feedback}}</p>
+<div *ngFor="let o of list">
+
+  <hr>
+</div>
