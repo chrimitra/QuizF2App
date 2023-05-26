@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ export class LoginComponent {
   @ViewChild('cognome') cognome!: ElementRef;
   @ViewChild('email') email!: ElementRef;
 
+  constructor(
+    private router: Router){}
 
   salvaUtente(){
     let nome_registrazione = this.nome.nativeElement.value
@@ -41,8 +44,7 @@ export class LoginComponent {
         email : email_registrazione
       }
       sessionStorage.setItem("UtenteLoggato",JSON.stringify(persona))
-
-      //SPOSTARSI SULLA PAGINA QUIZ
+      this.router.navigateByUrl('quiz');
 
 
 
