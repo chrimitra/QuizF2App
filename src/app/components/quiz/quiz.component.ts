@@ -75,6 +75,7 @@ this.service.getRandomQuestions(5).subscribe(domande =>
       this.finito = true;
       //da aggiungere invio a db invece che settarlo nella session *-*-*-*-*-*-*-*-*-*-*-*-*-*
       sessionStorage.setItem("provaInvio",JSON.stringify(JsonInvio))
+      this.service.putRisultati(JsonInvio).subscribe()
     }
   }
 
