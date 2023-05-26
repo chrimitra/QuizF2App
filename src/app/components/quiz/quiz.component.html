@@ -2,5 +2,5 @@
 
 <div>
   <p>{{domandeJson[x].domanda}}</p>
-  <button *ngFor="let item of domandeJson[x].risposte; let y = index" (click)="avanti(domandeJson[x].risposte[y])">{{domandeJson[x].risposte[y]}}</button>
+  <button *ngFor="let item of domandeJson[x].risposte; let y = index" (click)="avanti(domandeJson[x].risposte[y],domandeJson[x].domanda)">{{domandeJson[x].risposte[y]}}</button>
 </div>
