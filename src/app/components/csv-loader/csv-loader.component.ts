@@ -24,6 +24,7 @@ export class CsvLoaderComponent {
     this.file = e.target.files[0];
   }
   submitFile() {
+    this.submit.nativeElement.disabled = true;
     let fileReader: FileReader = new FileReader();
     let bodyRequest
     fileReader.readAsText(this.file)
@@ -34,7 +35,7 @@ export class CsvLoaderComponent {
       let domande = new Array();
       for (let i = 1; i < spl1.length; i++) {
         let spl2 = spl1[i].split(",")
-        let domanda = { id: spl2[0], domanda: spl2[1], risposte: [{ risposta: spl2[2] }, { risposta: spl2[3] }, { risposta: spl2[4] }, { risposta: spl2[5] }] }
+        let domanda = { id: spl2[0], domanda: spl2[1], risposte: [spl2[2], spl2[3], spl2[4], spl2[5] ] }
         domande.push(domanda)
       }
       let bodyRequest = { "questions": domande }
