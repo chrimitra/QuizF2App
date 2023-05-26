@@ -1,1 +1,6 @@
 <p>quiz works!</p>
+
+<div>
+  <p>{{domandeJson[x].domanda}}</p>
+  <button *ngFor="let item of domandeJson[x].risposte; let y = index" (click)="avanti(domandeJson[x].risposte[y])">{{domandeJson[x].risposte[y]}}</button>
+</div>

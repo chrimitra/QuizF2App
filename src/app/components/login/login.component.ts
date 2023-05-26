@@ -19,19 +19,19 @@ export class LoginComponent {
     let regex = /[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}/g;
 
     if (nome_registrazione == null || nome_registrazione == ''){
-      console.log("riempire tuttii campi")
+      console.log("riempire tutti i campi")
       return
     }
     if (cognome_registrazione == null || cognome_registrazione == ''){
-       console.log("riempire tuttii campi")
+       console.log("riempire tutti i campi")
        return
       }
     if (email_registrazione == null || email_registrazione == ''){
-       console.log("riempire tuttii campi")
+       console.log("riempire tutti i campi")
        return
       }
     if(!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email_registrazione as string)){
-      console.log("formato mail non corretto")
+      alert("formato mail non corretto")
       return
     }
 
@@ -41,6 +41,8 @@ export class LoginComponent {
         email : email_registrazione
       }
       sessionStorage.setItem("UtenteLoggato",JSON.stringify(persona))
+
+      //SPOSTARSI SULLA PAGINA QUIZ
 
 
 
