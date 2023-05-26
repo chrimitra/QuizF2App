@@ -15,4 +15,7 @@ export class ApisService {
       'http://192.168.1.232:6050/getRandomQuestions/' + questions
     );
   }
+  putRisultati(data: any): Observable<any> {
+    return this.http.post<any>('http://192.168.1.232:6050/putRisultati', data);
+  }
 }
