@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ApisService } from 'src/app/apis.service';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -7,30 +7,40 @@ import { Component } from '@angular/core';
 })
 export class QuizComponent {
 
+finito:boolean = false;
+
   x : number =0;
-  domandeJson : any[] = [    //da definire nell oninit tramite chiamataa dynamo *-*-*-*-*-*-*-*-*-*-*-*-*-*
-    {
-    domanda:"cosa beve spesso Edoardo?",
-    risposte:["acqua","fanta","spremuta di carciofo","Monster"]},
-    {
-      domanda:"Ci piace Java?",
-      risposte:["no","si","JAVA?","OVVIO"]
-    }
-]
+  domandeJson? : any[];
+
   risposteCorrette:String[] = [];
 
   risposteDate:any[] = [];
 
-ngOnInit(): void {
-  //salviamo le risposte giusta(per ora sempre nell'ultima posizione) in un array
-  for(let i =0; i<this.domandeJson.length;i++){
-    this.risposteCorrette.push(this.domandeJson[i].risposte[3])
-  }
-  //mischiamo le risposte per il quiz
- for(let i =0; i<this.domandeJson.length;i++){
-  this.shuffle(this.domandeJson[i].risposte)
-}
+  @ViewChild('DivQuiz') DivQuiz!: ElementRef;
 
+
+//private servizio: DatiService,
+constructor(
+  private service:ApisService){}
+
+
+ngOnInit(): void {
+  //estraiamo 30 domande dal db
+
+this.service.getRandomQuestions(5).subscribe(domande =>
+ { this.domandeJson = domande
+
+
+  //salviamo le risposte giusta(per ora sempre nella prima  posizione) in un array
+  for(let i =0; i<this.domandeJson.length;i++){
+      this.risposteCorrette.push(this.domandeJson[i].risposte[0])
+    }
+    //mischiamo le risposte per il quiz
+     for(let i =0; i<this.domandeJson.length;i++){
+        this.shuffle(this.domandeJson[i].risposte)
+      }
+    }
+      )
 }
 
 
@@ -52,7 +62,7 @@ ngOnInit(): void {
 
 
     //per mandare avanti le domande
-    if(this.x!= this.domandeJson.length-1){
+    if(this.x!= this.domandeJson!.length-1){
     this.x++
   }else{
     //quando si finisce il quiz, si salva tutto e viene inviato a db
@@ -61,6 +71,8 @@ ngOnInit(): void {
         utente:JSON.parse(sessionStorage.getItem("UtenteLoggato") as string),
         risposte : this.risposteDate
       }
+      this.DivQuiz.nativeElement.style.visibility = 'hidden';
+      this.finito = true;
       //da aggiungere invio a db invece che settarlo nella session *-*-*-*-*-*-*-*-*-*-*-*-*-*
       sessionStorage.setItem("provaInvio",JSON.stringify(JsonInvio))
     }

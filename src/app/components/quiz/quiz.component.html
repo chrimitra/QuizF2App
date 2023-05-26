@@ -1,6 +1,11 @@
 <p>quiz works!</p>
 
-<div>
+<div *ngIf="domandeJson" #DivQuiz>
   <p>{{domandeJson[x].domanda}}</p>
   <button *ngFor="let item of domandeJson[x].risposte; let y = index" (click)="avanti(domandeJson[x].risposte[y],domandeJson[x].domanda)">{{domandeJson[x].risposte[y]}}</button>
+</div>
+
+<div *ngIf="finito == true">
+  <p>GRAZIE PER AVER EFFETTUATO IL QUIZ </p>
+
 </div>
