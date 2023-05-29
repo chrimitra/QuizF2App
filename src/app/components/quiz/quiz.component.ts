@@ -40,19 +40,21 @@ export class QuizComponent {
   width!: number;
 
   initialBar!: HTMLElement;
+
+  selectedAnswer!: HTMLElement;
   //private servizio: DatiService,
   constructor(private service: ApisService) {
 
   }
 
   ngAfterViewInit() {
-    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
+    this.width = (this.numeroRisposteDate*100) / this.numeroDomande
     this.initialBar = document.getElementById('myBar') as HTMLElement
     this.initialBar.style.width = this.width.toString() + "%";
+    
   }
 
   ngOnInit(): void {
-    
     //estraiamo 30 domande dal db
 
     this.service.getRandomQuestions(this.numeroDomande).subscribe((domande) => {
@@ -88,16 +90,27 @@ export class QuizComponent {
     }, 1);
   }
 
-  imposta(risposta: any) {
+  imposta(risposta: any, y: number) {
     this.rispostaInv = risposta;
+    let button_choices = document.getElementsByClassName('answer-choices')
+    button_choices[y].classList.add('answer-selected');
+    
+    for (let i = 0; i < button_choices.length; i++) {
+      if(button_choices[i].classList.contains('answer-selected')) {
+        button_choices[i].classList.remove('answer-selected')
+        button_choices[y].classList.add('answer-selected');
+      }
+    }
+    
   }
 
   avanti() {
-    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
-    this.myBar.nativeElement.style.width = this.width.toString() + "%";
+    
     
     this.rispostaData = true;
     this.numeroRisposteDate++;
+    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
+    this.myBar.nativeElement.style.width = this.width.toString() + "%";
     let rispostaJson = {
       domanda: this.domandaInv,
       risposta: this.rispostaInv,
