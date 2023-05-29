@@ -1,4 +1,8 @@
+<div id="myProgress">
+  <div id="myBar" #myBar></div>
+</div>
 <div *ngIf="domandeJson" #DivQuiz>
+  
   <p>{{ secondiRimanenti }}s</p>
   <p>{{ numeroRisposteDate }} / {{ numeroDomande }}</p>
   <p>{{ domandeJson[x].domanda.replaceAll('"', "") }}</p>
@@ -14,4 +18,7 @@
 
 <div *ngIf="finito == true">
   <p>GRAZIE PER AVER EFFETTUATO IL QUIZ</p>
+</div>
+<div id="prova">
+  
 </div>

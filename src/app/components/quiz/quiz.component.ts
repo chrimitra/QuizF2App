@@ -18,6 +18,8 @@ export class QuizComponent {
   risposteDate: any[] = [];
 
   @ViewChild('DivQuiz') DivQuiz!: ElementRef;
+  @ViewChild('myBar') myBar!: ElementRef;
+
 
   numeroDomande: number = optionsJSON.defaultQuestions;
 
@@ -35,14 +37,27 @@ export class QuizComponent {
 
   domandaInv!: any;
 
+  width!: number;
+
+  initialBar!: HTMLElement;
   //private servizio: DatiService,
-  constructor(private service: ApisService) {}
+  constructor(private service: ApisService) {
+
+  }
+
+  ngAfterViewInit() {
+    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
+    this.initialBar = document.getElementById('myBar') as HTMLElement
+    this.initialBar.style.width = this.width.toString() + "%";
+  }
 
   ngOnInit(): void {
+    
     //estraiamo 30 domande dal db
 
     this.service.getRandomQuestions(this.numeroDomande).subscribe((domande) => {
       this.domandeJson = domande;
+      this.domandaInv = this.domandeJson[this.x].domanda
 
       //salviamo le risposte giusta(per ora sempre nella prima  posizione) in un array
       for (let i = 0; i < this.domandeJson.length; i++) {
@@ -53,6 +68,7 @@ export class QuizComponent {
         this.shuffle(this.domandeJson[i].risposte);
       }
     });
+    
     this.inizioTimerDomanda();
   }
 
@@ -77,6 +93,9 @@ export class QuizComponent {
   }
 
   avanti() {
+    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
+    this.myBar.nativeElement.style.width = this.width.toString() + "%";
+    
     this.rispostaData = true;
     this.numeroRisposteDate++;
     let rispostaJson = {
@@ -89,7 +108,7 @@ export class QuizComponent {
     if (this.rispostaInv == this.risposteCorrette[this.x]) {
       rispostaJson.verifica = 'Risposta giusta';
     } else if (this.rispostaInv == null) {
-      rispostaJson.verifica = 'Tempo scaduto';
+      rispostaJson.verifica = 'Risposta non data';
     } else {
       rispostaJson.verifica = 'Risposta sbagliata';
     }
