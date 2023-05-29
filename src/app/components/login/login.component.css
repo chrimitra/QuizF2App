@@ -1,45 +1,46 @@
-* {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,100;1,800&display=swap');
+.container{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.login-text{
+  font-weight:lighter;
+  font-size: 2.5rem;
+  text-align: center;
+}
+.description{
+  text-align: center;
 }
 
-/* Add padding to containers */
-.container {
-  padding: 16px;
-  background-color: white;
+.form-control{
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding:15px;
+  border: 0px;
+  opacity: 0.85;
+  width: 280px;
+  font-size: 0.9rem;
 }
-
-/* Full-width input fields */
-input[type=text]{
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
+.div-form-control{
+  text-align:center
+}
+.background{
+  background-image: url('../../../assets/background.svg');
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.button{
   border: none;
-  background: #f1f1f1;
-}
-
-input[type=text]:focus{
-  background-color: #ddd;
-  outline: none;
-}
-
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-.registerbtn {
-  background-color: #04AA6D;
+  background-color: #eb9846;
   color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.registerbtn:hover {
-  opacity: 1;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  transition-duration: 2s;
 }
