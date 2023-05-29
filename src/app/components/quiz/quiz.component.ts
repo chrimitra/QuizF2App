@@ -29,7 +29,7 @@ export class QuizComponent {
 
   intervallo!: any;
 
-  numeroRisposteDate: number = 0;
+  numeroRisposteDate: number = 1;
 
   //private servizio: DatiService,
   constructor(private service: ApisService) {}
