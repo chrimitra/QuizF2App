@@ -1,5 +1,6 @@
 <div *ngIf="domandeJson" #DivQuiz>
   <p>{{ secondiRimanenti }}s</p>
+  <p>{{ numeroRisposteDate }} / {{ numeroDomande }}</p>
   <p>{{ domandeJson[x].domanda.replaceAll('"', "") }}</p>
   <button
     *ngFor="let item of domandeJson[x].risposte; let y = index"
