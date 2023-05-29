@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ApisService } from 'src/app/apis.service';
+import optionsJSON from 'src/assets/options.json';
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -9,6 +10,7 @@ export class QuizComponent {
   finito: boolean = false;
 
   x: number = 0;
+
   domandeJson?: any[];
 
   risposteCorrette: String[] = [];
@@ -17,7 +19,7 @@ export class QuizComponent {
 
   @ViewChild('DivQuiz') DivQuiz!: ElementRef;
 
-  durataDomanda: number = 15000;
+  durataDomanda: number = optionsJSON.AnswersTimerSeconds * 1000;
 
   secondiRimanenti!: number;
 
@@ -31,18 +33,20 @@ export class QuizComponent {
   ngOnInit(): void {
     //estraiamo 30 domande dal db
 
-    this.service.getRandomQuestions(5).subscribe((domande) => {
-      this.domandeJson = domande;
+    this.service
+      .getRandomQuestions(optionsJSON.defaultQuestions)
+      .subscribe((domande) => {
+        this.domandeJson = domande;
 
-      //salviamo le risposte giusta(per ora sempre nella prima  posizione) in un array
-      for (let i = 0; i < this.domandeJson.length; i++) {
-        this.risposteCorrette.push(this.domandeJson[i].risposte[0]);
-      }
-      //mischiamo le risposte per il quiz
-      for (let i = 0; i < this.domandeJson.length; i++) {
-        this.shuffle(this.domandeJson[i].risposte);
-      }
-    });
+        //salviamo le risposte giusta(per ora sempre nella prima  posizione) in un array
+        for (let i = 0; i < this.domandeJson.length; i++) {
+          this.risposteCorrette.push(this.domandeJson[i].risposte[0]);
+        }
+        //mischiamo le risposte per il quiz
+        for (let i = 0; i < this.domandeJson.length; i++) {
+          this.shuffle(this.domandeJson[i].risposte);
+        }
+      });
     this.inizioTimerDomanda();
   }
 
