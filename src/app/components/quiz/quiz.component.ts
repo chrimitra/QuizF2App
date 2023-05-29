@@ -145,7 +145,7 @@ export class QuizComponent {
         utente: JSON.parse(sessionStorage.getItem('UtenteLoggato') as string),
         risposte: this.risposteDate,
       };
-      this.DivQuiz.nativeElement.style.visibility = 'hidden';
+      // this.DivQuiz.nativeElement.style.visibility = 'hidden';
       this.finito = true;
       //da aggiungere invio a db invece che settarlo nella session *-*-*-*-*-*-*-*-*-*-*-*-*-*
       sessionStorage.setItem('provaInvio', JSON.stringify(JsonInvio));

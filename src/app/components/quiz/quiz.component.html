@@ -1,12 +1,12 @@
 <div id="myProgress">
   <div id="myBar" #myBar></div>
 </div>
- <div class="timer">
+
+<div class="container" *ngIf="domandeJson && finito == false" #DivQuiz>
+  
+  <div class="timer">
     <p>{{ secondiRimanenti }}s</p>
   </div>
-<div class="container" *ngIf="domandeJson" #DivQuiz>
-  
-  
 
   <div class="number-questions">
     <p>{{ numeroRisposteDate }}/{{ numeroDomande }}</p>
@@ -31,7 +31,8 @@
 
 </div>
 
-<div *ngIf="finito == true">
+<div *ngIf="finito == true" class="quiz-completed">
+  <img class="check-logo" src="assets/check.svg">
   <p>GRAZIE PER AVER EFFETTUATO IL QUIZ</p>
 </div>
 <div id="prova">
