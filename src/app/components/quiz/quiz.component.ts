@@ -31,6 +31,10 @@ export class QuizComponent {
 
   numeroRisposteDate: number = 1;
 
+  rispostaInv!: any;
+
+  domandaInv!: any;
+
   //private servizio: DatiService,
   constructor(private service: ApisService) {}
 
@@ -60,7 +64,7 @@ export class QuizComponent {
         return;
       }
       if (new Date().getTime() >= fineTempo && this.domandeJson) {
-        this.avanti(null, this.domandeJson[this.x].domanda);
+        this.avanti();
       }
       this.secondiRimanenti = Math.ceil(
         (fineTempo - new Date().getTime()) / 1000
@@ -68,19 +72,23 @@ export class QuizComponent {
     }, 1);
   }
 
-  avanti(rispostaInv: any, domandaInv: string) {
+  imposta(risposta: any) {
+    this.rispostaInv = risposta;
+  }
+
+  avanti() {
     this.rispostaData = true;
     this.numeroRisposteDate++;
     let rispostaJson = {
-      domanda: domandaInv,
-      risposta: rispostaInv,
+      domanda: this.domandaInv,
+      risposta: this.rispostaInv,
       verifica: '',
     };
 
     //verifichiamo se la risposta è corretta o no
-    if (rispostaInv == this.risposteCorrette[this.x]) {
+    if (this.rispostaInv == this.risposteCorrette[this.x]) {
       rispostaJson.verifica = 'Risposta giusta';
-    } else if (rispostaInv == null) {
+    } else if (this.rispostaInv == null) {
       rispostaJson.verifica = 'Tempo scaduto';
     } else {
       rispostaJson.verifica = 'Risposta sbagliata';
@@ -94,6 +102,10 @@ export class QuizComponent {
       clearInterval(this.intervallo);
       this.intervallo = null;
       this.inizioTimerDomanda();
+      this.rispostaInv = null;
+      if (this.domandeJson) {
+        this.domandaInv = this.domandeJson[this.x].domanda;
+      }
     } else {
       //quando si finisce il quiz, si salva tutto e viene inviato a db
       this.x = 0;
