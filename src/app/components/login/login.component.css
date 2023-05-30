@@ -1,14 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,100;1,800&display=swap');
+
+.background {
+
+}
+
+.main-container {
+  display: flex;
+  height: 37rem;
+  padding: 20px;
+  margin: 2rem;
+  width: 60%;
+  margin: 2rem auto;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.60);
+  border-radius: 12px;
+
+}
+
+.container-left  {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.container-left img {
+  margin: auto;
+  width: 30rem;
+  height: 20rem;
+}
+
+.container-right {
+
+}
+
+.img-container {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  margin: 1rem auto;
+  width: 50%;
+  text-align: center;
+}
+
+.img-container img{
+  width: 10rem;
+  height: 6rem;
+  margin: auto;
+}
+
+
 .container{
   font-family: Arial, Helvetica, sans-serif;
 }
 .login-text{
-  font-weight:lighter;
+  font-weight: 600;
   font-size: 2.5rem;
   text-align: center;
+  color: #1d3557;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
 }
 .description{
   text-align: center;
+  color: #1d3557;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
 }
 
 .form-control{
@@ -16,10 +72,23 @@
   margin: 0.5rem;
   padding:15px;
   border: 0px;
-  opacity: 0.85;
+  opacity: 0.5;
   width: 280px;
   font-size: 0.9rem;
+  font-weight: 700;
 }
+
+.form-control:hover{ 
+  transform: scale(1);
+  opacity: 1;
+}
+
+.form-control:focus{ 
+  font-weight: 500;
+  outline: none;
+  opacity: 1;
+}
+
 .div-form-control{
   text-align:center
 }
@@ -43,4 +112,11 @@
   font-size: 1.1rem;
   border-radius: 25px;
   transition-duration: 2s;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #1d3557;
 }

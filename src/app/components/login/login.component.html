@@ -1,24 +1,36 @@
 
-<div class = "background">
-  <div class="container">
-  <form action="">
-    <h2 class="login-text">Registrati</h2>
-    <p class="description">Inserire i propri dati prima di Eseguire il Quiz</p>
-    <div class="div-form-control">
-    <input type="text" class="form-control" placeholder="Inserisci nome" name="nome" id="nome" #nome required>
+<div class="background">
+  <div class="main-container">
+    <div class="container-left">
+      <img src="assets\illustration.png">
     </div>
-    <br>
-    <div class="div-form-control">
-    <input type="text" class="form-control" placeholder="Inserisci cognome" name="cognome" id="cognome" #cognome required>
+
+
+    <div class="container-right">
+      <div class="img-container">
+        <img src="assets\logo.png">
+      </div>
+      <div class="container">
+      <form action="">
+        <h2 class="login-text">Registrati</h2>
+        <p class="description">Inserire i propri dati prima di Eseguire il Quiz</p>
+        <div class="div-form-control">
+        <input type="text" class="form-control" placeholder="Inserisci nome" name="nome" id="nome" #nome required>
+        </div>
+        <br>
+        <div class="div-form-control">
+        <input type="text" class="form-control" placeholder="Inserisci cognome" name="cognome" id="cognome" #cognome required>
+        </div>
+        <br>
+        <div class="div-form-control">
+        <input type="text" class="form-control" placeholder="Inserisci email" name="email" id="email" #email required>
+        </div>
+        <br>
+        <div class="div-form-control">
+        <button class="button" class="button" (click)="salvaUtente()">Registrati</button>
+      </div>
+      </form>
+      </div>
     </div>
-    <br>
-    <div class="div-form-control">
-    <input type="text" class="form-control" placeholder="Inserisci email" name="email" id="email" #email required>
-    </div>
-    <br>
-    <div class="div-form-control">
-    <button class="button" class="button" (click)="salvaUtente()">Register</button>
   </div>
-</form>
-</div>
 </div>
