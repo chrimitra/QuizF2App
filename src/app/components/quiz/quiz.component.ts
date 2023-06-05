@@ -64,6 +64,7 @@ export class QuizComponent {
         return;
       }
       if (new Date().getTime() >= fineTempo && this.domandeJson) {
+        this.rispostaInv = null;
         this.avanti();
       }
       this.secondiRimanenti = Math.ceil(
