@@ -1,45 +1,122 @@
-* {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,100;1,800&display=swap');
+
+.background {
+
 }
 
-/* Add padding to containers */
-.container {
-  padding: 16px;
-  background-color: white;
+.main-container {
+  display: flex;
+  height: 37rem;
+  padding: 20px;
+  margin: 2rem;
+  width: 60%;
+  margin: 2rem auto;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.60);
+  border-radius: 12px;
+
 }
 
-/* Full-width input fields */
-input[type=text]{
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
+.container-left  {
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
-input[type=text]:focus{
-  background-color: #ddd;
-  outline: none;
+.container-left img {
+  margin: auto;
+  width: 30rem;
+  height: 20rem;
 }
 
-/* Overwrite default styles of hr */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
+.container-right {
+
 }
 
-.registerbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+.img-container {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  margin: 1rem auto;
+  width: 50%;
+  text-align: center;
 }
 
-.registerbtn:hover {
+.img-container img{
+  width: 10rem;
+  height: 6rem;
+  margin: auto;
+}
+
+
+.container{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.login-text{
+  font-weight: 600;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1d3557;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+}
+.description{
+  text-align: center;
+  color: #1d3557;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-control{
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding:15px;
+  border: 0px;
+  opacity: 0.5;
+  width: 280px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-control:hover{ 
+  transform: scale(1);
   opacity: 1;
+}
+
+.form-control:focus{ 
+  font-weight: 500;
+  outline: none;
+  opacity: 1;
+}
+
+.div-form-control{
+  text-align:center
+}
+.background{
+  background-image: url('../../../assets/background.svg');
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.button{
+  border: none;
+  background-color: #eb9846;
+  color: white;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  transition-duration: 2s;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #1d3557;
 }

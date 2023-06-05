@@ -1,17 +1,46 @@
-<div *ngIf="domandeJson" #DivQuiz>
-  <p>{{ secondiRimanenti }}s</p>
-  <p>{{ numeroRisposteDate }} / {{ numeroDomande }}</p>
-  <p>{{ domandeJson[x].domanda.replaceAll('"', "") }}</p>
-  <button
-    *ngFor="let item of domandeJson[x].risposte; let y = index"
-    (click)="imposta(domandeJson[x].risposte[y])"
-  >
-    {{ domandeJson[x].risposte[y].replaceAll('"', "") }}
-  </button>
-  <br />
-  <button (click)="avanti()">Conferma</button>
+ 
+<div class="nav-container">
+  <div class="img-container">
+      <img src="assets\logo.png">
+    </div>
+    <div id="myProgress">
+      <div id="myBar" #myBar></div>
+    </div>
 </div>
 
-<div *ngIf="finito == true">
+<div class="container" *ngIf="domandeJson && finito == false" #DivQuiz>
+  
+  <div class="timer">
+    <p>{{ secondiRimanenti }}s</p>
+  </div>
+
+  <div class="number-questions">
+    <p>{{ numeroRisposteDate }}/{{ numeroDomande }}</p>
+  </div>
+  
+  
+  <div class="question-text">
+      <p>{{ domandeJson[x].domanda.replaceAll('"', "") }}</p>
+  </div>
+
+  <div class="container-answers">
+    <button class="answer-choices" *ngFor="let item of domandeJson[x].risposte; let y = index"  (click)="imposta(domandeJson[x].risposte[y], y)">
+      {{ domandeJson[x].risposte[y].replaceAll('"', "") }}
+    </button>
+  </div>
+
+  <br />
+
+  <div class="box-confirm">
+    <button class="btn-confirmed" (click)="avanti()"> CONFERMA </button>
+  </div>
+
+</div>
+
+<div *ngIf="finito == true" class="quiz-completed">
+  <img class="check-logo" src="assets/check.svg">
   <p>GRAZIE PER AVER EFFETTUATO IL QUIZ</p>
+</div>
+<div id="prova">
+  
 </div>
