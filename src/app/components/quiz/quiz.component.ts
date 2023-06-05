@@ -20,7 +20,6 @@ export class QuizComponent {
   @ViewChild('DivQuiz') DivQuiz!: ElementRef;
   @ViewChild('myBar') myBar!: ElementRef;
 
-
   numeroDomande: number = optionsJSON.defaultQuestions;
 
   durataDomanda: number = optionsJSON.AnswersTimerSeconds * 1000;
@@ -43,15 +42,12 @@ export class QuizComponent {
 
   selectedAnswer!: HTMLElement;
   //private servizio: DatiService,
-  constructor(private service: ApisService) {
-
-  }
+  constructor(private service: ApisService) {}
 
   ngAfterViewInit() {
-    this.width = (this.numeroRisposteDate*100) / this.numeroDomande
-    this.initialBar = document.getElementById('myBar') as HTMLElement
-    this.initialBar.style.width = this.width.toString() + "%";
-    
+    this.width = (this.numeroRisposteDate * 100) / this.numeroDomande;
+    this.initialBar = document.getElementById('myBar') as HTMLElement;
+    this.initialBar.style.width = this.width.toString() + '%';
   }
 
   ngOnInit(): void {
@@ -59,7 +55,7 @@ export class QuizComponent {
 
     this.service.getRandomQuestions(this.numeroDomande).subscribe((domande) => {
       this.domandeJson = domande;
-      this.domandaInv = this.domandeJson[this.x].domanda
+      this.domandaInv = this.domandeJson[this.x].domanda;
 
       //salviamo le risposte giusta(per ora sempre nella prima  posizione) in un array
       for (let i = 0; i < this.domandeJson.length; i++) {
@@ -70,7 +66,7 @@ export class QuizComponent {
         this.shuffle(this.domandeJson[i].risposte);
       }
     });
-    
+
     this.inizioTimerDomanda();
   }
 
@@ -82,7 +78,7 @@ export class QuizComponent {
         return;
       }
       if (new Date().getTime() >= fineTempo && this.domandeJson) {
-        this.rispostaInv = null;
+        this.rispostaInv = '';
         this.avanti();
       }
       this.secondiRimanenti = Math.ceil(
@@ -93,25 +89,22 @@ export class QuizComponent {
 
   imposta(risposta: any, y: number) {
     this.rispostaInv = risposta;
-    let button_choices = document.getElementsByClassName('answer-choices')
+    let button_choices = document.getElementsByClassName('answer-choices');
     button_choices[y].classList.add('answer-selected');
-    
+
     for (let i = 0; i < button_choices.length; i++) {
-      if(button_choices[i].classList.contains('answer-selected')) {
-        button_choices[i].classList.remove('answer-selected')
+      if (button_choices[i].classList.contains('answer-selected')) {
+        button_choices[i].classList.remove('answer-selected');
         button_choices[y].classList.add('answer-selected');
       }
     }
-    
   }
 
   avanti() {
-    
-    
     this.rispostaData = true;
     this.numeroRisposteDate++;
-    this.width = (this.numeroRisposteDate*100 ) / this.numeroDomande
-    this.myBar.nativeElement.style.width = this.width.toString() + "%";
+    this.width = (this.numeroRisposteDate * 100) / this.numeroDomande;
+    this.myBar.nativeElement.style.width = this.width.toString() + '%';
     let rispostaJson = {
       domanda: this.domandaInv,
       risposta: this.rispostaInv,
@@ -121,7 +114,7 @@ export class QuizComponent {
     //verifichiamo se la risposta è corretta o no
     if (this.rispostaInv == this.risposteCorrette[this.x]) {
       rispostaJson.verifica = 'Risposta giusta';
-    } else if (this.rispostaInv == null) {
+    } else if (this.rispostaInv == '') {
       rispostaJson.verifica = 'Risposta non data';
     } else {
       rispostaJson.verifica = 'Risposta sbagliata';
@@ -135,7 +128,7 @@ export class QuizComponent {
       clearInterval(this.intervallo);
       this.intervallo = null;
       this.inizioTimerDomanda();
-      this.rispostaInv = null;
+      this.rispostaInv = '';
       if (this.domandeJson) {
         this.domandaInv = this.domandeJson[this.x].domanda;
       }
